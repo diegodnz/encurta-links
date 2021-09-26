@@ -31,3 +31,14 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Maven ###
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Properties ###
+application-dev.properties
+

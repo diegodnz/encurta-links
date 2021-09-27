@@ -1,7 +1,10 @@
 package com.pc.encurtalinks.domain.links.dtos;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class LinkEncurtadoOutput {
 
+	@ApiModelProperty(example = "zg.com.br/gkMTZ")
 	private String link;
 
 	public LinkEncurtadoOutput(String link) {

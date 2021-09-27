@@ -1,8 +1,13 @@
 package com.pc.encurtalinks.api.exceptionhandler.dtos;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class ProblemaCampo {
 
+	@ApiModelProperty(position = 0, example = "link")
 	private String nome;
+	
+	@ApiModelProperty(position = 1, example = "tamanho deve ser entre 4 e 255")
 	private String mensagem;
 
 	public ProblemaCampo(String nome, String mensagem) {

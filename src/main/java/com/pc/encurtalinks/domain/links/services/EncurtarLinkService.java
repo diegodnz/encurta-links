@@ -3,6 +3,8 @@ package com.pc.encurtalinks.domain.links.services;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.pc.encurtalinks.domain.links.Links;
@@ -20,7 +22,7 @@ public class EncurtarLinkService {
 	@Value("${host-url}")
 	private String url;
 	
-	public LinkEncurtadoOutput encurtar(LinkInput linkOriginal) {
+	public ResponseEntity<LinkEncurtadoOutput> encurtar(LinkInput linkOriginal) {
 		int length = 5;
 	    boolean useLetters = true;
 	    boolean useNumbers = true;
@@ -32,7 +34,7 @@ public class EncurtarLinkService {
 	    
 	    LinkEncurtadoOutput response = new LinkEncurtadoOutput(linkEncurtado);
 	    Mapper.copyPropertiesIgnoreNull(mapeamentoLinks, response);
-	    return response;
+	    return new ResponseEntity<LinkEncurtadoOutput>(response, HttpStatus.OK);
 	    
 	}
 }

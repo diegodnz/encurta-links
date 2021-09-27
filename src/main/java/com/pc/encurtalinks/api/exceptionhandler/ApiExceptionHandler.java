@@ -36,7 +36,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		Problema problema = new Problema();
 		problema.setStatus(status.value());
 		problema.setTitulo(ex.getMessage());
-		problema.setDataHora(OffsetDateTime.now());				
+		problema.setDataHora(OffsetDateTime.now());
 		
 		return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
 	}
@@ -70,6 +70,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		problema.setStatus(status.value());
 		problema.setTitulo("Requisição com campos faltando ou preenchidos incorretamente");
 		problema.setDataHora(OffsetDateTime.now());
+		problema.setPossuiCampos(true);
 		
 		problema.setCampos(campos);
 		

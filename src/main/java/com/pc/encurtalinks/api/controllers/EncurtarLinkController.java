@@ -20,7 +20,6 @@ public class EncurtarLinkController {
 	private EncurtarLinkService encurtarLinkService;
 	
 	// TODO Documentação swagger
-	// TODO Tratar mensagens exceções de validação de dados
 	// TODO Validar url
 	@PostMapping
 	public LinkEncurtadoOutput encurtar(@RequestBody @Valid LinkInput linkOriginal) {

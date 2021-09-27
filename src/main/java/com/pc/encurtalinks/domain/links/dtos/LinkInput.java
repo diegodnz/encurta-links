@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 public class LinkInput {
 	
 	@NotBlank
-	@Size(max = 255)
+	@Size(min = 4, max = 255)
 	private String link;
 	
 	public LinkInput() {}

@@ -7,7 +7,7 @@ public class ProblemaCampo {
 	@ApiModelProperty(position = 0, example = "link")
 	private String nome;
 	
-	@ApiModelProperty(position = 1, example = "tamanho deve ser entre 4 e 255")
+	@ApiModelProperty(position = 1, example = "Link inválido")
 	private String mensagem;
 
 	public ProblemaCampo(String nome, String mensagem) {

@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.pc.encurtalinks.api.exceptionhandler.dtos.Problema;
 import com.pc.encurtalinks.api.exceptionhandler.dtos.ProblemaCampo;
+import com.pc.encurtalinks.api.exceptionhandler.exceptions.CampoException;
 import com.pc.encurtalinks.api.exceptionhandler.exceptions.NegocioException;
 
 @ControllerAdvice
@@ -37,6 +38,24 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		problema.setStatus(status.value());
 		problema.setTitulo(ex.getMessage());
 		problema.setDataHora(OffsetDateTime.now());
+		
+		return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
+	}
+	
+	@ExceptionHandler(CampoException.class)	
+	public ResponseEntity<Object> handleCampoException(CampoException ex, WebRequest request) {
+		HttpStatus status = ex.getStatus();	
+
+		ArrayList<ProblemaCampo> campos = new ArrayList<ProblemaCampo>();
+		campos.add(new ProblemaCampo(ex.getNomeCampo(), ex.getMensagem()));
+		
+		Problema problema = new Problema();
+		problema.setStatus(status.value());
+		problema.setTitulo("Requisição com campos faltando ou preenchidos incorretamente");
+		problema.setDataHora(OffsetDateTime.now());
+		
+		problema.setCampos(campos);
+		problema.setPossuiCampos(true);
 		
 		return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
 	}
@@ -70,9 +89,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		problema.setStatus(status.value());
 		problema.setTitulo("Requisição com campos faltando ou preenchidos incorretamente");
 		problema.setDataHora(OffsetDateTime.now());
-		problema.setPossuiCampos(true);
 		
 		problema.setCampos(campos);
+		problema.setPossuiCampos(true);
 		
 		return super.handleExceptionInternal(ex, problema, headers, status, request);
 	

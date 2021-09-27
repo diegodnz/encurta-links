@@ -25,8 +25,6 @@ public class EncurtarLinkController {
 	@Autowired
 	private EncurtarLinkService encurtarLinkService;
 	
-	// TODO Validar url
-	
 	// ** Encurtar link **
 	@ApiOperation(
 			value = "Recebe uma url e retorna um link encurtado para ela"

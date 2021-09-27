@@ -22,14 +22,16 @@ public class EncurtarLinkService {
 	@Value("${host-url}")
 	private String url;
 	
-	public ResponseEntity<LinkEncurtadoOutput> encurtar(LinkInput linkOriginal) {
+	public ResponseEntity<LinkEncurtadoOutput> encurtar(LinkInput linkOriginalInput) {
+		String linkOriginal = linkOriginalInput.getLink();		
+		
 		int length = 5;
 	    boolean useLetters = true;
 	    boolean useNumbers = true;
 	    String codigoLink = RandomStringUtils.random(length, useLetters, useNumbers);
 	    
 	    String linkEncurtado = url + "/" + codigoLink;
-	    Links mapeamentoLinks = new Links(linkEncurtado, linkOriginal.getLink());
+	    Links mapeamentoLinks = new Links(linkEncurtado, linkOriginal);
 	    linksRepository.save(mapeamentoLinks);
 	    
 	    LinkEncurtadoOutput response = new LinkEncurtadoOutput(linkEncurtado);

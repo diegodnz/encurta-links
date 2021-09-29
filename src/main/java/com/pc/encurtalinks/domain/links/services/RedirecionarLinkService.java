@@ -17,6 +17,13 @@ public class RedirecionarLinkService {
 	@Autowired
 	private LinksRepository linksRepository;
 	
+	/*
+	 * Este método recebe um código de encurtamento.
+	 * Caso ele seja válido (encontrado no banco de dados), a chamada é redirecionada para a url correspondente
+	 * Caso não seja válido, será retornado o html 'notfound.html' 
+	 * @param response - Objeto utilizado para redirecionamento
+	 * @param codigoEncurtado - O código de encurtamento que poderá corresponder à uma url 
+	 */
 	public ModelAndView redirecionar(HttpServletResponse response, String codigoEncurtado) {
 		response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
 		Optional<Links> links = linksRepository.findByLinkEncurtado(codigoEncurtado);

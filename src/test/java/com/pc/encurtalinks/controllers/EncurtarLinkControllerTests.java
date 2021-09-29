@@ -51,7 +51,7 @@ public class EncurtarLinkControllerTests {
 	 */
 	@Test
 	public void encurtarLink() throws Exception {
-		String linkOriginal = "www.google.com.br";
+		String linkOriginal = "https://www.google.com.br";
 		ResultActions requestEncurtar = mvc.perform(post("/links/encurtar")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(String.format("{\"link\": \"%s\"}", linkOriginal)));

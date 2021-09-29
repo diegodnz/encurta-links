@@ -1,5 +1,7 @@
 package com.pc.encurtalinks.domain.links;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +17,6 @@ public interface LinksRepository extends JpaRepository<Links, String>{
 	@Modifying
 	@Transactional
 	void saveNew(@Param("link_encurtado") String linkEncurtado, @Param("link_original") String linkOriginal);
+	
+	Optional<Links> findByLinkEncurtado(String linkEncurtado);
 }
